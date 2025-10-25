@@ -28,6 +28,9 @@ void init_repl() {
             case (PREPARE_UNRECOGNIZED_STATEMENT):
                 printf("Unrecognized keyword at start of '%s'.\n", input_buffer->buffer);
                 continue;
+            case (PREPARE_SYNTAX_ERROR):
+                printf("Invalid arguments.\n");
+                continue;
         }
 
         switch (execute_statement(&statement,table)) {
