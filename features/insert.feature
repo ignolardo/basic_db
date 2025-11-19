@@ -2,7 +2,7 @@ Feature: Database insertion
 
     Scenario Outline: Simple insertion
         Given Row insertion: "<id>" "<username>" "<email>"
-        When Run script
+        When I run script
         Then REPL result "<answer>"
     
     Examples:
@@ -14,11 +14,27 @@ Feature: Database insertion
 
     Scenario Outline: Incomplete argument insertion
         Given Row insertion: "<id>" "<username>" "<email>"
-        When Run script
+        When I run script
         Then REPL result "<answer>"
 
     Examples:
         | id    | username      | email                 | answer                |
-        | 4     | george        |                       | Invalid arguments.    |
         |       | peter         | peter@pmail.com       | Invalid arguments.    |
         | 5     |               | julia101@outlook.com  | Invalid arguments.    |
+        | 4     | george        |                       | Invalid arguments.    |
+
+    Scenario: Insertion with maximum argument length
+        #Given Rows insertion with maximum length user and email
+        Given An insertion command with maximum argument length
+        When I run script
+        Then REPL result "Executed."
+        
+    Scenario: Insertion with arguments exceeding the maximum length
+        #Given Row insertion with exceeded maximum length user and email
+        Given An insertion command with exceeded maximum argument length
+        When I run script
+        Then REPL result "String is too long."
+
+
+
+

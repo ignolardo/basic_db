@@ -1,13 +1,13 @@
-Given("Row insertion: {string} {string} {string}") do |g_id, g_username, g_email|
-  @id = g_id
-  @username = g_username
-  @email = g_email
-  @commands = ["insert %s %s %s" % [@id, @username, @email],".exit"]
+Given "Row insertion: {string} {string} {string}" do |g_id, g_username, g_email|
+  @commands = ["insert #{g_id} #{g_username} #{g_email}"]
 end
 
-Then("REPL result {string}") do |answer|
-  expect(@result).to match_array([
-    "db> ",
-    "db> %s" % answer,
-  ])
+
+Given /An insertion command with maximum argument length/ do
+  @commands = ["insert 1 #{"a"*32} #{"a"*255}"]
 end
+
+Given /An insertion command with exceeded maximum argument length/ do
+  @commands = ["insert 1 #{"b"*33} #{"b"*256}"]
+end
+
