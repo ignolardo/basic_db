@@ -11,6 +11,8 @@ void init_repl() {
         print_prompt();
         read_input(input_buffer);
 
+        //printf("%s ", input_buffer->buffer);
+
         if (input_buffer->buffer[0] == '.') {
             switch (do_meta_command(input_buffer,table)) {
                 case (META_COMMAND_SUCCESS):
@@ -30,6 +32,9 @@ void init_repl() {
                 continue;
             case (PREPARE_SYNTAX_ERROR):
                 printf("Invalid arguments.\n");
+                continue;
+            case (PREPARE_STRING_TOO_LONG):
+                printf("String is too long.\n");
                 continue;
         }
 
