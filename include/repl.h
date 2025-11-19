@@ -32,6 +32,7 @@ typedef enum {
     PREPARE_SUCCESS,
     PREPARE_UNRECOGNIZED_STATEMENT,
     PREPARE_SYNTAX_ERROR,
+    PREPARE_STRING_TOO_LONG,
 } PrepareResult;
 
 typedef enum {
@@ -51,6 +52,7 @@ typedef enum {
 
 MetaCommandResult do_meta_command(InputBuffer *input_buffer, Table *table);
 PrepareResult prepare_statement(InputBuffer *input_buffer, Statement *statement);
+PrepareResult prepare_insert(InputBuffer *input_buffer, Statement *statement);
 ExecutionResult execute_statement(Statement *statement, Table *table);
 ExecutionResult execute_insert(Statement *statement, Table *table);
 ExecutionResult execute_select(Statement *statement, Table *table);
