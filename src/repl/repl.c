@@ -11,8 +11,6 @@ void init_repl() {
         print_prompt();
         read_input(input_buffer);
 
-        //printf("%s ", input_buffer->buffer);
-
         if (input_buffer->buffer[0] == '.') {
             switch (do_meta_command(input_buffer,table)) {
                 case (META_COMMAND_SUCCESS):
@@ -35,6 +33,9 @@ void init_repl() {
                 continue;
             case (PREPARE_STRING_TOO_LONG):
                 printf("String is too long.\n");
+                continue;
+            case (PRERPARE_NEGATIVE_ID):
+                printf("ID cannot be negative.\n");
                 continue;
         }
 
