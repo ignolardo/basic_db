@@ -35,6 +35,7 @@ Feature: Database insertion
         When I run script
         Then REPL result "String is too long."
 
-
-
-
+    Scenario: Insertion with negative id
+        Given An insertion with negative id
+        When I run script
+        Then REPL result "ID cannot be negative."

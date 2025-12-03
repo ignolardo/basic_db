@@ -11,3 +11,7 @@ Given /An insertion command with exceeded maximum argument length/ do
   @commands = ["insert 1 #{"b"*33} #{"b"*256}"]
 end
 
+Given /An insertion with negative id/ do
+  @commands = ["insert -1 john johndoe@pmail.com"]
+end
+
